@@ -134,8 +134,8 @@ function analyze_sentiment($text, $projectId = 'tidy-strand-201401')
     foreach ($annotation->sentences() as $sentence) {
         $var .= 'Sentence: %s' .  $sentence['text']['content'] .PHP_EOL;
         $var .= 'Sentence Sentiment:' . PHP_EOL;
-        $var .= '  Magnitude: %s' .  $sentence['sentiment']['magnitude'].PHP_EOL,;
-        $var .= '  Score: %s' .  $sentence['sentiment']['score'].PHP_EOL,;
+        $var .= '  Magnitude: %s' .  $sentence['sentiment']['magnitude'].PHP_EOL;
+        $var .= '  Score: %s' .  $sentence['sentiment']['score'].PHP_EOL;
         $var .= PHP_EOL;
     }
     return $var;
