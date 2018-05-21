@@ -49,7 +49,7 @@ $callback = function($msg){
 
    # echo " [x] Done", "\n";
     $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
-	echo($job);
+	echo($job['user']);
 };
 
 $channel->basic_qos(null, 1, null);
