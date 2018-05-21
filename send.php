@@ -26,8 +26,8 @@ echo('llego, server1');
 
 function getMessage()
 {
-  var type = $_GET['id'];
-  switch () {
+  $type = $_GET['id'];
+  switch ($type) {
     case 1:
       $vect = array(
         'user' => 'mike', 
