@@ -20,9 +20,9 @@ $msg1 = array(
 	'tipo' => 'generico'
 );
 $msg = new AMQPMessage(json_encode($msg1, JSON_UNESCAPED_SLASHES), array('delivery_mode' => 2));
-$channel->basic_publish($msg, '', '1');
+$channel->basic_publish($msg, '', '2');
 
 $channel->close();
 $connection->close();
 
-echo('llego');
+echo('llego, server1');
