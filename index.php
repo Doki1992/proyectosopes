@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/vendor/autoload.php';
-
+use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 $valu = rand(1,3);
 define("RABBITMQ_HOST", '35.229.95.28');
 define("RABBITMQ_PORT", 5672);
@@ -49,7 +49,7 @@ $callback = function($msg){
 
    # echo " [x] Done", "\n";
     $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
-	echo($job['user']);
+	analisis($job['mensaje']);
 };
 
 $channel->basic_qos(null, 1, null);
@@ -72,3 +72,32 @@ while (count($channel->callbacks))
 
 $channel->close();
 $connection->close();
+
+
+function analisis($fileName)
+{
+    $imageAnnotator = new ImageAnnotatorClient();
+
+# the name of the image file to annotate
+$fileName = $fileName;
+$fileName1 = $fileName;
+# prepare the image to be annotated
+$image = file_get_contents($fileName1);
+
+# performs label detection on the image file
+$response = $imageAnnotator->labelDetection($image);
+$labels = $response->getLabelAnnotations();
+
+if ($labels) {
+    echo("Labels:" . PHP_EOL);
+    echo(json_encode($labels) .PHP_EOL);
+    foreach ($labels as $label) {
+        echo($label->getDescription() . PHP_EOL);
+    }
+} else {
+    echo('No label found' . PHP_EOL);
+}
+
+
+
+}
