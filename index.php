@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Cloud\Language\LanguageClient;
 $valu = rand(1,3);
 define("RABBITMQ_HOST", '35.229.95.28');
 define("RABBITMQ_PORT", 5672);
@@ -54,6 +55,7 @@ $callback = function($msg){
     }	
     else{
         analyze_sentiment($job['mensaje']);
+        analyze_entities($job['mensaje']);        
     }
 };
 
@@ -128,6 +130,35 @@ function analyze_sentiment($text, $projectId = 'tidy-strand-201401')
         printf('Sentence Sentiment:' . PHP_EOL);
         printf('  Magnitude: %s' . PHP_EOL, $sentence['sentiment']['magnitude']);
         printf('  Score: %s' . PHP_EOL, $sentence['sentiment']['score']);
+        printf(PHP_EOL);
+    }
+}
+
+
+
+
+function analyze_entities($text, $projectId = 'tidy-strand-201401')
+{
+    // Create the Natural Language client
+    $language = new LanguageClient([
+        'projectId' => $projectId,
+    ]);
+
+    // Call the analyzeEntities function
+    $annotation = $language->analyzeEntities($text);
+
+    // Print out information about each entity
+    $entities = $annotation->entities();
+    foreach ($entities as $entity) {
+        printf('Name: %s' . PHP_EOL, $entity['name']);
+        printf('Type: %s' . PHP_EOL, $entity['type']);
+        printf('Salience: %s' . PHP_EOL, $entity['salience']);
+        if (array_key_exists('wikipedia_url', $entity['metadata'])) {
+            printf('Wikipedia URL: %s' . PHP_EOL, $entity['metadata']['wikipedia_url']);
+        }
+        if (array_key_exists('mid', $entity['metadata'])) {
+            printf('Knowledge Graph MID: %s' . PHP_EOL, $entity['metadata']['mid']);
+        }
         printf(PHP_EOL);
     }
 }
