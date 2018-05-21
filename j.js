@@ -2,7 +2,7 @@
 
 
 
-setTimeout(callback, 200);
+setInterval(callback, 200);
 
 function callback()
 {
