@@ -74,6 +74,7 @@ $callback = function($msg){
         } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
         }
+        $conn->close();
     }	
     else{
         $var = analyze_sentiment($job['mensaje']);
