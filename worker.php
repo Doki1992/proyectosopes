@@ -31,6 +31,7 @@ $channel->queue_declare(
     $ticket = null
 );
 
+$var;
 
 $callback = function($msg){
     $job = json_decode($msg->body, $assocForm=true);
@@ -51,16 +52,11 @@ $callback = function($msg){
    # echo " [x] Done", "\n";
     $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
     if($job['type'] == 'Image'){
-        $var = analisis($job['mensaje']);        
-        $var = array('url' => $job['mensaje'], 'content' => $var);
-        header('Content-type: application/json; charset=utf-8');
-        echo(json_encode($var));
+        $var .= analisis($job['mensaje']);                        
     }	
     else{
-        $var = analyze_sentiment($job['mensaje']);
-        $var .= analyze_entities($job['mensaje']);             
-        header('Content-type: application/json; charset=utf-8');
-        echo($var);
+        $var .= analyze_sentiment($job['mensaje']);
+        $var .= analyze_entities($job['mensaje']);                     
     }
 };
 
@@ -84,7 +80,8 @@ while (count($channel->callbacks))
 
 $channel->close();
 $connection->close();
-
+ header('Content-type: application/json; charset=utf-8');
+echo($var);
 
 function analisis($fileName)
 {
