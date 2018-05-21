@@ -12,6 +12,16 @@ define("RABBITMQ_USERNAME", "guest");
 define("RABBITMQ_PASSWORD", "guest");
 define("RABBITMQ_QUEUE_NAME", $valu);
 
+
+$servername = "localhost";
+$username = "root";
+$password = "mongo";
+$dbname = "pro";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+
+
 $connection = new \PhpAmqpLib\Connection\AMQPStreamConnection(
     RABBITMQ_HOST, 
     RABBITMQ_PORT, 
@@ -57,6 +67,9 @@ $callback = function($msg){
         //$var = array('url' => $job['mensaje'], 'content' => $var);
         echo(json_encode($var));
         echo(traslate($var));
+        $sql = "INSERT INTO con (cont, status)
+                VALUES (" . "'". traslate($var) . "'" .", 1)";
+        $conn->query($sql);
     }	
     else{
         $var = analyze_sentiment($job['mensaje']);
