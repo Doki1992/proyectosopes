@@ -3,6 +3,8 @@
 require_once __DIR__ . '/vendor/autoload.php';
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 use Google\Cloud\Language\LanguageClient;
+use Google\Cloud\Translate\TranslateClient;
+
 $valu = rand(1,3);
 define("RABBITMQ_HOST", '35.229.95.28');
 define("RABBITMQ_PORT", 5672);
@@ -31,7 +33,6 @@ $channel->queue_declare(
     $ticket = null
 );
 
-$var;
 
 $callback = function($msg){
     $job = json_decode($msg->body, $assocForm=true);
@@ -53,13 +54,15 @@ $callback = function($msg){
     $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
     if($job['type'] == 'Image'){
         $var = analisis($job['mensaje']);        
-        $var = array('url' => $job['mensaje'], 'content' => $var);        
+        $var = array('url' => $job['mensaje'], 'content' => $var);
         echo(json_encode($var));
+        echo(translate($var));
     }	
     else{
         $var = analyze_sentiment($job['mensaje']);
-        $var .= analyze_entities($job['mensaje']);                     
-        echo($var);
+        $var .= analyze_entities($job['mensaje']);             
+
+        echo(translate($var));
     }
 };
 
@@ -138,6 +141,26 @@ function analyze_sentiment($text, $projectId = 'tidy-strand-201401')
         $var .= PHP_EOL;
     }
     return $var;
+}
+
+function traslate($projectId = 'tidy-strand-201401', $text){
+    # Instantiates a client
+$translate = new TranslateClient([
+    'projectId' => $projectId
+]);
+
+# The text to translate
+
+# The target language
+$target = 'es';
+
+# Translates some text into Russian
+$translation = $translate->translate($text, [
+    'target' => $target
+]);
+
+echo 'Text: ' . $text . '
+Translation: ' . $translation['text'];
 }
 
 
