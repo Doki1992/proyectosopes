@@ -142,7 +142,7 @@ function analyze_sentiment($text, $projectId = 'tidy-strand-201401')
     return $var;
 }
 
-function traslate($projectId = 'tidy-strand-201401', $text){
+function traslate($text,$projectId = 'tidy-strand-201401'){
     # Instantiates a client
 $translate = new TranslateClient([
     'projectId' => $projectId
