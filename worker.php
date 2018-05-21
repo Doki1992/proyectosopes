@@ -53,12 +53,13 @@ $callback = function($msg){
     if($job['type'] == 'Image'){
         $var = analisis($job['mensaje']);        
         $var = array('url' => $job['mensaje'], 'content' => $var);
+        header('Content-type: application/json; charset=utf-8');
         echo(json_encode($var));
     }	
     else{
         $var = analyze_sentiment($job['mensaje']);
         $var .= analyze_entities($job['mensaje']);             
-
+        header('Content-type: application/json; charset=utf-8');
         echo($var);
     }
 };
@@ -127,14 +128,14 @@ function analyze_sentiment($text, $projectId = 'tidy-strand-201401')
     $sentiment = $annotation->sentiment();
     $var = "";
     $var .= 'Document Sentiment:' . PHP_EOL;
-    $var .= '  Magnitude: %s' .  $sentiment['magnitude'] . PHP_EOL;
-    $var .= '  Score: %s' .  $sentiment['score'] .PHP_EOL;
+    $var .= '  Magnitude: s' .  $sentiment['magnitude'] . PHP_EOL;
+    $var .= '  Score: s' .  $sentiment['score'] .PHP_EOL;
     $var .= PHP_EOL;
     foreach ($annotation->sentences() as $sentence) {
-        $var .= 'Sentence: %s' .  $sentence['text']['content'] .PHP_EOL;
+        $var .= 'Sentence: s' .  $sentence['text']['content'] .PHP_EOL;
         $var .= 'Sentence Sentiment:' . PHP_EOL;
-        $var .= '  Magnitude: %s' .  $sentence['sentiment']['magnitude'].PHP_EOL;
-        $var .= '  Score: %s' .  $sentence['sentiment']['score'].PHP_EOL;
+        $var .= '  Magnitude: s' .  $sentence['sentiment']['magnitude'].PHP_EOL;
+        $var .= '  Score: s' .  $sentence['sentiment']['score'].PHP_EOL;
         $var .= PHP_EOL;
     }
     return $var;
@@ -157,14 +158,14 @@ function analyze_entities($text, $projectId = 'tidy-strand-201401')
     $entities = $annotation->entities();
     $var = "";
     foreach ($entities as $entity) {
-        $var .= 'Name: %s' .  $entity['name'] .PHP_EOL;
-        $var .= 'Type: %s' .  $entity['type'] .PHP_EOL;
-        $var .= 'Salience: %s' .  $entity['salience'] .PHP_EOL;
+        $var .= 'Name: s' .  $entity['name'] .PHP_EOL;
+        $var .= 'Type: s' .  $entity['type'] .PHP_EOL;
+        $var .= 'Salience: s' .  $entity['salience'] .PHP_EOL;
         if (array_key_exists('wikipedia_url', $entity['metadata'])) {
-            $var .= 'Wikipedia URL: %s' .  $entity['metadata']['wikipedia_url'].PHP_EOL;
+            $var .= 'Wikipedia URL: s' .  $entity['metadata']['wikipedia_url'].PHP_EOL;
         }
         if (array_key_exists('mid', $entity['metadata'])) {
-            $var .= 'Knowledge Graph MID: %s' .  $entity['metadata']['mid'].PHP_EOL;
+            $var .= 'Knowledge Graph MID: s' .  $entity['metadata']['mid'].PHP_EOL;
         }
         $var .= PHP_EOL;
     }
