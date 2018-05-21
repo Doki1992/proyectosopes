@@ -10,9 +10,9 @@ $imageAnnotator = new ImageAnnotatorClient();
 
 # the name of the image file to annotate
 $fileName = 'https://cf-cdn.gananci.com/wp-content/uploads/2017/05/felicidad-619x346.jpg';
-
+$fileName1 = 'http://rubenturienzo.com/sites/default/files/styles/flexslider_full/public/29_latristeza.jpg?itok=dMNmqhRI';
 # prepare the image to be annotated
-$image = file_get_contents($fileName);
+$image = file_get_contents($fileName1);
 
 # performs label detection on the image file
 $response = $imageAnnotator->labelDetection($image);
