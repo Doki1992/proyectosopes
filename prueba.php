@@ -57,4 +57,32 @@ function analyze_sentiment($text, $projectId = 'tidy-strand-201401')
     }
 }
 
+
+function analyze_entities($text, $projectId = 'tidy-strand-201401')
+{
+    // Create the Natural Language client
+    $language = new LanguageClient([
+        'projectId' => $projectId,
+    ]);
+
+    // Call the analyzeEntities function
+    $annotation = $language->analyzeEntities($text);
+
+    // Print out information about each entity
+    $entities = $annotation->entities();
+    foreach ($entities as $entity) {
+        printf('Name: %s' . PHP_EOL, $entity['name']);
+        printf('Type: %s' . PHP_EOL, $entity['type']);
+        printf('Salience: %s' . PHP_EOL, $entity['salience']);
+        if (array_key_exists('wikipedia_url', $entity['metadata'])) {
+            printf('Wikipedia URL: %s' . PHP_EOL, $entity['metadata']['wikipedia_url']);
+        }
+        if (array_key_exists('mid', $entity['metadata'])) {
+            printf('Knowledge Graph MID: %s' . PHP_EOL, $entity['metadata']['mid']);
+        }
+        printf(PHP_EOL);
+    }
+}
+
 analyze_sentiment('I love you');
+analyze_entities('I love you');
