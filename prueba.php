@@ -1,10 +1,12 @@
 <?php
 # includes the autoloader for libraries installed with composer
-/*require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 # imports the Google Cloud client library
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Cloud\Language\LanguageClient;
 
+/*
 # instantiates a client
 $imageAnnotator = new ImageAnnotatorClient();
 
