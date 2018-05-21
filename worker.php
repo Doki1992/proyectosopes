@@ -104,14 +104,13 @@ if ($labels) {
     $var .= "Labels:" . PHP_EOL;
     $content = "";
     foreach ($labels as $label) {
-        $var .= $label->getDescription() . PHP_EOL;
-        $var .= $label->getDescription() . PHP_EOL;
+        $var .= $label->getDescription() . PHP_EOL;        
     }
 } else {
     $var .= 'No label found' . PHP_EOL;
     $var .= "No label found";
 }
-
+return $var;
 }
 
 function analyze_sentiment($text, $projectId = 'tidy-strand-201401')
