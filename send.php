@@ -34,6 +34,7 @@ function getMessage()
         'mensaje' => genMensaje(),
         'type' => 'text',
       );
+      return $vect;
       break;
     case 2:
       $vect = array(
@@ -42,8 +43,15 @@ function getMessage()
         'type' => 'Image',
       );
       break;
+      return $vect;
     case 3:
-      break;
+    $vect = array(
+        'user' => 'mike', 
+        'mensaje' => getMessage(),
+        'type' => 'Image',
+      );
+      break;      
+      return $vect;
     default:
       # code...
       break;
