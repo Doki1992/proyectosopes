@@ -42,8 +42,8 @@ function getMessage()
         'mensaje' => getMessage(),
         'type' => 'Image',
       );
-      break;
       return $vect;
+      break;      
     case 3:
     $vect = array(
         'user' => 'mike', 
