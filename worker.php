@@ -159,13 +159,13 @@ function analyze_entities($text, $projectId = 'tidy-strand-201401')
     $var = "";
     foreach ($entities as $entity) {
         $var .= 'Name: %s' .  $entity['name'] .PHP_EOL;
-        $var .= 'Type: %s' .  $entity['type']) .PHP_EOL;
+        $var .= 'Type: %s' .  $entity['type'] .PHP_EOL;
         $var .= 'Salience: %s' .  $entity['salience'] .PHP_EOL;
         if (array_key_exists('wikipedia_url', $entity['metadata'])) {
             $var .= 'Wikipedia URL: %s' .  $entity['metadata']['wikipedia_url'].PHP_EOL;
         }
         if (array_key_exists('mid', $entity['metadata'])) {
-            $var .= 'Knowledge Graph MID: %s' .  $entity['metadata']['mid'].PHP_EOL,;
+            $var .= 'Knowledge Graph MID: %s' .  $entity['metadata']['mid'].PHP_EOL;
         }
         $var .= PHP_EOL;
     }
