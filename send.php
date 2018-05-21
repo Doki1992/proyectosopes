@@ -1,27 +1,79 @@
-
-
 <?php 
 require_once __DIR__ . '/vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
+
 $connection = new AMQPStreamConnection('172.17.0.3', 5672, 'guest', 'guest');
 $channel = $connection->channel();
+
 try{
-        $channel->queue_declare('2', false, true, false, false);    
+  $channel->queue_declare('1', false, true, false, false);  
 }
 catch(Exception $e)
 {
-        echo($e->getMessage());
+  echo($e->getMessage());
 }
 
-$msg1 = array(
-        'user' => 'mike',
-        'mensaje' => 'hola mundo 1',
-        'tipo' => 'generico1'
-);
-$msg = new AMQPMessage(json_encode($msg1, JSON_UNESCAPED_SLASHES), array('delivery_mode' => 2));
+$msg1 = getMessage();
 
-$channel->basic_publish($msg, '', '2');
+$msg = new AMQPMessage(json_encode($msg1, JSON_UNESCAPED_SLASHES), array('delivery_mode' => 2));
+$channel->basic_publish($msg, '', '1');
+
 $channel->close();
 $connection->close();
-echo('llego');
+
+echo('llego, server1');
+
+function getMessage()
+{
+  var type = $_GET['id'];
+  switch () {
+    case 1:
+      $vect = array(
+        'user' => 'mike', 
+        'mensaje' => genMensaje(),
+        'type' => 'text',
+      );
+      break;
+    case 2:
+      $vect = array(
+        'user' => 'mike', 
+        'mensaje' => getMessage(),
+        'type' => 'Image',
+      );
+      break;
+    case 3:
+      break;
+    default:
+      # code...
+      break;
+  }
+}
+
+function genMensaje(){
+  $cont = rand(1,3);
+  if ($cont == 1){
+    return "hola mundo";
+  }
+  else if($cont == 2){
+    return "te odio";
+  }
+  else if($cont == 3){
+    return "te amo";
+  }
+
+  return "fijo";
+}
+
+function getImage(){
+  $cont = rand(1,3);
+  if ($cont == 1){
+    return 'https://cf-cdn.gananci.com/wp-content/uploads/2017/05/felicidad-619x346.jpg';
+  }
+  else if($cont == 2){
+    return $fileName1 = 'http://rubenturienzo.com/sites/default/files/styles/flexslider_full/public/29_latristeza.jpg?itok=dMNmqhRI';
+  }
+  else if($cont == 3){
+    return $fileName1 = 'http://rubenturienzo.com/sites/default/files/styles/flexslider_full/public/29_latristeza.jpg?itok=dMNmqhRI'; 
+  } 
+}
