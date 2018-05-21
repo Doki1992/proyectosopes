@@ -20,7 +20,7 @@ $labels = $response->getLabelAnnotations();
 
 if ($labels) {
     echo("Labels:" . PHP_EOL);
-    echo(json_decode($labels) .PHP_EOL);
+    echo(json_encode($labels) .PHP_EOL);
     foreach ($labels as $label) {
         echo($label->getDescription() . PHP_EOL);
     }
