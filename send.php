@@ -7,7 +7,7 @@ $connection = new AMQPStreamConnection('172.17.0.3', 5672, 'guest', 'guest');
 $channel = $connection->channel();
 
 try{
-  $channel->queue_declare('1', false, true, false, false);  
+  $channel->queue_declare('2', false, true, false, false);  
 }
 catch(Exception $e)
 {
