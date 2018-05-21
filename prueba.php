@@ -9,7 +9,7 @@ use Google\Cloud\Vision\V1\ImageAnnotatorClient;
 $imageAnnotator = new ImageAnnotatorClient();
 
 # the name of the image file to annotate
-$fileName = 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.chiquipedia.com%2Fimagenes%2Fimagenes-flores19.jpg&imgrefurl=https%3A%2F%2Fwww.chiquipedia.com%2Fimagenes-bonitas%2F&docid=oBYNPiKCxvhIUM&tbnid=b8KYXYJ6GVxtuM%3A&vet=10ahUKEwjegfeJ_JXbAhWSxFkKHYMHBH4QMwiaASgBMAE..i&w=1024&h=535&client=ubuntu&bih=670&biw=1317&q=imagenes&ved=0ahUKEwjegfeJ_JXbAhWSxFkKHYMHBH4QMwiaASgBMAE&iact=mrc&uact=8';
+$fileName = 'https://cf-cdn.gananci.com/wp-content/uploads/2017/05/op.jpg';
 
 # prepare the image to be annotated
 $image = file_get_contents($fileName);
@@ -26,3 +26,4 @@ if ($labels) {
 } else {
     echo('No label found' . PHP_EOL);
 }
+
