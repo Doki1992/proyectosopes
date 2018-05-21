@@ -147,7 +147,7 @@ function traslate($projectId = 'tidy-strand-201401', $text){
 $translate = new TranslateClient([
     'projectId' => $projectId
 ]);
-
+echo("s");
 # The text to translate
 
 # The target language
