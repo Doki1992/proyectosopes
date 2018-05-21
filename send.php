@@ -40,7 +40,7 @@ function getMessage()
       file_put_contents('/tmp/p.txt', 'llego');
       $vect = array(
         'user' => 'mike', 
-        'mensaje' => getMessage(),
+        'mensaje' => getImage(),
         'type' => 'Image',
       );
       file_put_contents('/tmp/p.txt', 'llego1');
@@ -49,7 +49,7 @@ function getMessage()
     case 3:
     $vect = array(
         'user' => 'mike', 
-        'mensaje' => getMessage(),
+        'mensaje' => getImage(),
         'type' => 'Image',
       );
     return $vect;
