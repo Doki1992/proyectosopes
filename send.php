@@ -50,8 +50,8 @@ function getMessage()
         'mensaje' => getMessage(),
         'type' => 'Image',
       );
-      break;      
-      return $vect;
+    return $vect;
+      break;            
     default:
       # code...
       break;
