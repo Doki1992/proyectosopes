@@ -37,11 +37,13 @@ function getMessage()
       return $vect;
       break;
     case 2:
+      file_put_contents('/tmp/p.txt', 'llego');
       $vect = array(
         'user' => 'mike', 
         'mensaje' => getMessage(),
         'type' => 'Image',
       );
+      file_put_contents('/tmp/p.txt', 'llego1');
       return $vect;
       break;      
     case 3:
