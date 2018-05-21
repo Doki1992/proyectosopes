@@ -74,7 +74,7 @@ function genMensaje(){
 }
 
 function getImage(){
-  $cont = rand(1,3);
+  $cont = 1;
   if ($cont == 1){
     return 'https://cf-cdn.gananci.com/wp-content/uploads/2017/05/felicidad-619x346.jpg';
   }
