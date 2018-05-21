@@ -1,6 +1,6 @@
 <?php
 # includes the autoloader for libraries installed with composer
-require __DIR__ . '/vendor/autoload.php';
+/*require __DIR__ . '/vendor/autoload.php';
 
 # imports the Google Cloud client library
 use Google\Cloud\Vision\V1\ImageAnnotatorClient;
@@ -28,3 +28,31 @@ if ($labels) {
     echo('No label found' . PHP_EOL);
 }
 
+*/
+
+function analyze_sentiment($text, $projectId = 'tidy-strand-201401')
+{
+    // Create the Natural Language client
+    $language = new LanguageClient([
+        'projectId' => $projectId,
+    ]);
+
+    // Call the analyzeSentiment function
+    $annotation = $language->analyzeSentiment($text);
+
+    // Print document and sentence sentiment information
+    $sentiment = $annotation->sentiment();
+    printf('Document Sentiment:' . PHP_EOL);
+    printf('  Magnitude: %s' . PHP_EOL, $sentiment['magnitude']);
+    printf('  Score: %s' . PHP_EOL, $sentiment['score']);
+    printf(PHP_EOL);
+    foreach ($annotation->sentences() as $sentence) {
+        printf('Sentence: %s' . PHP_EOL, $sentence['text']['content']);
+        printf('Sentence Sentiment:' . PHP_EOL);
+        printf('  Magnitude: %s' . PHP_EOL, $sentence['sentiment']['magnitude']);
+        printf('  Score: %s' . PHP_EOL, $sentence['sentiment']['score']);
+        printf(PHP_EOL);
+    }
+}
+
+analyze_sentiment('I love you');
