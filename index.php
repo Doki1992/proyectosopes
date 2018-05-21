@@ -49,7 +49,9 @@ $callback = function($msg){
 
    # echo " [x] Done", "\n";
     $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
-	analisis($job['mensaje']);
+    if($job['type'] == 'Image'){
+        analisis($job['mensaje']);
+    }	
 };
 
 $channel->basic_qos(null, 1, null);
@@ -90,14 +92,19 @@ $labels = $response->getLabelAnnotations();
 
 if ($labels) {
     echo("Labels:" . PHP_EOL);
-    echo(json_encode($labels) .PHP_EOL);
+    $content = "";
     foreach ($labels as $label) {
         echo($label->getDescription() . PHP_EOL);
+        $content .= $label->getDescription() . PHP_EOL;
     }
 } else {
     echo('No label found' . PHP_EOL);
+    $content = "No label found";
 }
 
+}
 
+function analisisTexto()
+{
 
 }
