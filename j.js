@@ -8,7 +8,7 @@ function callback()
 {
 	$.ajax({
 			url: "worker.php",
-			method: POST,
+			method: 'POST',
 			success: function(response){
 				alert(response);
 			},
