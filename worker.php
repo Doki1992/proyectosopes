@@ -67,16 +67,7 @@ $callback = function($msg){
         //$var = array('url' => $job['mensaje'], 'content' => $var);
         echo(json_encode($var));
         echo(traslate($var));
-        echo('ddd');
-        $sql = "INSERT INTO con (cont, status)
-                VALUES (" . "'". traslate($var) . "'" .", 1)";
-        echo($sql);
-        if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-        } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-        $conn->close();
+
     }	
     else{
         $var = analyze_sentiment($job['mensaje']);
