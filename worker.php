@@ -69,7 +69,11 @@ $callback = function($msg){
         echo(traslate($var));
         $sql = "INSERT INTO con (cont, status)
                 VALUES (" . "'". traslate($var) . "'" .", 1)";
-        $conn->query($sql);
+        if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+        } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     }	
     else{
         $var = analyze_sentiment($job['mensaje']);
