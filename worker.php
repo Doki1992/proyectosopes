@@ -56,13 +56,13 @@ $callback = function($msg){
         $var = analisis($job['mensaje']);        
         $var = array('url' => $job['mensaje'], 'content' => $var);
         echo(json_encode($var));
-        echo(translate($var));
+        echo(traslate($var));
     }	
     else{
         $var = analyze_sentiment($job['mensaje']);
         $var .= analyze_entities($job['mensaje']);             
 
-        echo(translate($var));
+        echo(traslate($var));
     }
 };
 
