@@ -3,7 +3,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 $valu = "cola" . rand(1,3);
-define("RABBITMQ_HOST", 'http://35.229.95.28');
+define("RABBITMQ_HOST", '35.229.95.28');
 define("RABBITMQ_PORT", 5672);
 define("RABBITMQ_USERNAME", "guest");
 define("RABBITMQ_PASSWORD", "guest");
