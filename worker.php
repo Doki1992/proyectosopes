@@ -51,9 +51,9 @@ $callback = function($msg){
    # echo " [x] Done", "\n";
     $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
     if($job['type'] == 'Image'){
-        analisis($job['mensaje']);        
+        $var = analisis($job['mensaje']);        
         $var = array('url' => $job['mensaje'], 'content' => $var);
-        echo(json_decode($var));
+        echo(json_encode($var));
     }	
     else{
         $var = analyze_sentiment($job['mensaje']);
