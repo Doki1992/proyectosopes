@@ -52,6 +52,9 @@ $callback = function($msg){
     if($job['type'] == 'Image'){
         analisis($job['mensaje']);
     }	
+    else{
+        analyze_sentiment($job['mensaje']);
+    }
 };
 
 $channel->basic_qos(null, 1, null);
@@ -104,7 +107,27 @@ if ($labels) {
 
 }
 
-function analisisTexto()
+function analyze_sentiment($text, $projectId = 'tidy-strand-201401')
 {
+    // Create the Natural Language client
+    $language = new LanguageClient([
+        'projectId' => $projectId,
+    ]);
 
+    // Call the analyzeSentiment function
+    $annotation = $language->analyzeSentiment($text);
+
+    // Print document and sentence sentiment information
+    $sentiment = $annotation->sentiment();
+    printf('Document Sentiment:' . PHP_EOL);
+    printf('  Magnitude: %s' . PHP_EOL, $sentiment['magnitude']);
+    printf('  Score: %s' . PHP_EOL, $sentiment['score']);
+    printf(PHP_EOL);
+    foreach ($annotation->sentences() as $sentence) {
+        printf('Sentence: %s' . PHP_EOL, $sentence['text']['content']);
+        printf('Sentence Sentiment:' . PHP_EOL);
+        printf('  Magnitude: %s' . PHP_EOL, $sentence['sentiment']['magnitude']);
+        printf('  Score: %s' . PHP_EOL, $sentence['sentiment']['score']);
+        printf(PHP_EOL);
+    }
 }
