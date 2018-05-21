@@ -2,14 +2,11 @@
 
 
 
-setInterval(callback, 200);
+setInterval(callback, 500);
 
 function callback()
 {
-	alert('200');
-}
-
-$.ajax({
+	$.ajax({
 			url: "worker.php",
 			method: 'POST',
 			success: function(response){
@@ -19,3 +16,6 @@ $.ajax({
 				alert(error.responseText);
 			}
 });
+}
+
+
