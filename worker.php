@@ -51,11 +51,15 @@ $callback = function($msg){
    # echo " [x] Done", "\n";
     $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
     if($job['type'] == 'Image'){
-        analisis($job['mensaje']);
+        analisis($job['mensaje']);        
+        $var = array('url' => $job['mensaje'], 'content' => $var);
+        echo(json_decode($var));
     }	
     else{
-        analyze_sentiment($job['mensaje']);
-        analyze_entities($job['mensaje']);        
+        $var = analyze_sentiment($job['mensaje']);
+        $var .= analyze_entities($job['mensaje']);             
+
+        echo($var);
     }
 };
 
@@ -94,17 +98,18 @@ $image = file_get_contents($fileName1);
 # performs label detection on the image file
 $response = $imageAnnotator->labelDetection($image);
 $labels = $response->getLabelAnnotations();
-
+$var = "";
 if ($labels) {
-    echo("Labels:" . PHP_EOL);
+
+    $var .= "Labels:" . PHP_EOL;
     $content = "";
     foreach ($labels as $label) {
-        echo($label->getDescription() . PHP_EOL);
-        $content .= $label->getDescription() . PHP_EOL;
+        $var .= $label->getDescription() . PHP_EOL;
+        $var .= $label->getDescription() . PHP_EOL;
     }
 } else {
-    echo('No label found' . PHP_EOL);
-    $content = "No label found";
+    $var .= 'No label found' . PHP_EOL;
+    $var .= "No label found";
 }
 
 }
@@ -121,17 +126,19 @@ function analyze_sentiment($text, $projectId = 'tidy-strand-201401')
 
     // Print document and sentence sentiment information
     $sentiment = $annotation->sentiment();
-    printf('Document Sentiment:' . PHP_EOL);
-    printf('  Magnitude: %s' . PHP_EOL, $sentiment['magnitude']);
-    printf('  Score: %s' . PHP_EOL, $sentiment['score']);
-    printf(PHP_EOL);
+    $var = "";
+    $var .= 'Document Sentiment:' . PHP_EOL;
+    $var .= '  Magnitude: %s' .  $sentiment['magnitude'] . PHP_EOL;
+    $var .= '  Score: %s' .  $sentiment['score'] .PHP_EOL;
+    $var .= PHP_EOL;
     foreach ($annotation->sentences() as $sentence) {
-        printf('Sentence: %s' . PHP_EOL, $sentence['text']['content']);
-        printf('Sentence Sentiment:' . PHP_EOL);
-        printf('  Magnitude: %s' . PHP_EOL, $sentence['sentiment']['magnitude']);
-        printf('  Score: %s' . PHP_EOL, $sentence['sentiment']['score']);
-        printf(PHP_EOL);
+        $var .= 'Sentence: %s' .  $sentence['text']['content'] .PHP_EOL;
+        $var .= 'Sentence Sentiment:' . PHP_EOL;
+        $var .= '  Magnitude: %s' .  $sentence['sentiment']['magnitude'].PHP_EOL,;
+        $var .= '  Score: %s' .  $sentence['sentiment']['score'].PHP_EOL,;
+        $var .= PHP_EOL;
     }
+    return $var;
 }
 
 
@@ -149,16 +156,18 @@ function analyze_entities($text, $projectId = 'tidy-strand-201401')
 
     // Print out information about each entity
     $entities = $annotation->entities();
+    $var = "";
     foreach ($entities as $entity) {
-        printf('Name: %s' . PHP_EOL, $entity['name']);
-        printf('Type: %s' . PHP_EOL, $entity['type']);
-        printf('Salience: %s' . PHP_EOL, $entity['salience']);
+        $var .= 'Name: %s' .  $entity['name'] .PHP_EOL;
+        $var .= 'Type: %s' .  $entity['type']) .PHP_EOL;
+        $var .= 'Salience: %s' .  $entity['salience'] .PHP_EOL;
         if (array_key_exists('wikipedia_url', $entity['metadata'])) {
-            printf('Wikipedia URL: %s' . PHP_EOL, $entity['metadata']['wikipedia_url']);
+            $var .= 'Wikipedia URL: %s' .  $entity['metadata']['wikipedia_url'].PHP_EOL;
         }
         if (array_key_exists('mid', $entity['metadata'])) {
-            printf('Knowledge Graph MID: %s' . PHP_EOL, $entity['metadata']['mid']);
+            $var .= 'Knowledge Graph MID: %s' .  $entity['metadata']['mid'].PHP_EOL,;
         }
-        printf(PHP_EOL);
+        $var .= PHP_EOL;
     }
+    return $var;
 }
