@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tidy-strand-201401",
+  "private_key_id": "2f8a060f71abda266085dce6920e9d0bd1ad9a20",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCmiUPSeD7kffjm\nHs3xs/ENJlsr7Tp+XqjqtKPHunfP0dtujNIaZywe/JtPdT77vJlU9V/wiBtdvSNL\nQ5rHHzQsuI0TUi6XxULdLufw8kyx57TbQQHgr02dPVAQiVlrrQQjenvfsWdw0WO+\nGsq0uTUXByGBrfz5dHMMZcElKnqBevJxWpZWY9xQuFNgTcy5mQInIRp44aKeM/BU\nJh59G+C74NF2vO+RcjIeJIpqeFMNHXZYtEFiTDEhaKdz4YnXOrso00a4korqmqXF\n2a/JmJPnEzAtyx872Qu8h+OwUlSpJvAmbAD5f9+9uGP8S9K8kTGU3ms2HED30/kz\neeH26yrfAgMBAAECggEAATz/2QBI426mW6IUZ1aU4inY8rL3ka0tgo7bF7PLJHhY\nfwvWaH9AF9WwzlhX7z8M2tHD2vUZuWQ1iRLUtn24AX8e/9F6hDYuYMulynTBKjxH\nuK7U9aRuczVbmfJGszzDM52IPBBEulUfcaOF9bsM0IHrXcLH7ajptBVlNSjWmVp0\n42eEIr5bCL8ZiJ0V1pbh7epRrax6+0f7U4MhadUs4x9jIZz8q/9Iubhvh9OWr6ay\nRiF6HrKs7hTf2oAgXT2oZdx6lJrgRywp0QLspBepX7mwjhmrhx6L1X997nBuFsdQ\ncH8wleMiezFLEK/twghH3IbSQVfWkVRz1DV4/PgXNQKBgQDnBbEPm29nh6g+7ESw\nJU9ZQRSv5bVrJ+cuDASFvuy5L/R7oXJPDty+3chXPCMoTx/AabYWInmDi3qmptG8\nVKuh5sVWOymyOancHdOX93DMigo45lcStu/Meam/LNl9TTyNCbDl1udX/TP+y6J1\ni+23KlJd9WbrfSLgZv6TdL9DRQKBgQC4irUq+VFZQZyDxD7hLRlsYVI83681VBET\nc1ZT48CPJTtfBsTvUehWaFv2hg4U0H4J+Wufuy0TNa80xUwUBz/NzwQy2WuI3a2a\nIEDnbYz6RqysXtFjQk+pQJhcjSibQVTdaAzA8hiSt6b8LyQqaOHx4CDJPUwMoYEM\nrwJSUlLl0wKBgGPItpCqL3VFR+tdu9FlXB+OF7ReAH03MAhYkn9+VtsqFmxr8Gar\nYbdjLgxX4kuf2XQPdOGcpGWoEiL3PPIelD+K4MN9LGZZt79mdqVV8De4i+/FtehU\nccEc76+uXIZdnQDCJdEwgJ4ltJaiOBqThOqvcgI5Y+nlE/JfKihgrdgNAoGBALbk\nSU6wzu2NuAdjHApgfvzJqw5HhcZtbYsAWMNFSdbUSHYSKGUioQfZ36KAEz6PrwpF\nlmM0xyRtpRnAm3iSAqr/CyM2FXwMbvv8ETcLfJeiKYmfYxdjZb3RFe9Lur27ztar\nQ1CJ3s6xkp4GPmqFjcAAp52p0VAHU/V1EPDzQ9MfAoGAeGUxXgJm3YdViZPSOW26\n8PNXGQnY5doB6qQVnMcYha7zFp9N9F2JPjbetljz1WTjxoCwlLi8p/rOuhaH0LdT\nppEd4XqVw6p35l03iN8OaxcdL/MMLqpByTgaTmJWewPQ9FVR5wBSNBZpmL4l0M1W\ndS5YLuX+J91onITD3f1F/Wc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "prueba@tidy-strand-201401.iam.gserviceaccount.com",
+  "client_id": "117632120198811013391",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/prueba%40tidy-strand-201401.iam.gserviceaccount.com"
+}
